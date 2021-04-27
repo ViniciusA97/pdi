@@ -20,11 +20,17 @@ public class RGB {
 
     }
 
+    public RGB(double [] rgb){
+        r = rgb[2];
+        g = rgb[1];
+        b = rgb[0];
+    }
+
     public YIQ convertToYiq(){
         double preY =
                 Constants.VALUE_CONVERT_TO_YIQ_Y_FACTOR_R * r
-                + Constants.VALUE_CONVERT_TO_YIQ_Y_FACTOR_G * g
-                + Constants.VALUE_CONVERT_TO_YIQ_Y_FACTOR_B * b;
+                        + Constants.VALUE_CONVERT_TO_YIQ_Y_FACTOR_G * g
+                        + Constants.VALUE_CONVERT_TO_YIQ_Y_FACTOR_B * b;
 
         double preI = Constants.VALUE_CONVERT_TO_YIQ_I_FACTOR_R * r
                 - Constants.VALUE_CONVERT_TO_YIQ_I_FACTOR_G * g
@@ -37,22 +43,13 @@ public class RGB {
         return new YIQ( preY, preI, preQ);
     }
 
-    public RGB(double [] rgb){
-        r = rgb[2];
-        g = rgb[1];
-        b = rgb[0];
-    }
+    public double[] getArray(){
+        double[] rgb = new double[3];
+        rgb[0] = b;
+        rgb[1] = g;
+        rgb[2] = r;
 
-    public double [] doGreyScaleColor(){
-
-        double grey = (r+g+b)/3;
-        double [] greyScale = new double[3];
-
-        greyScale[0] = grey;
-        greyScale[1] = grey;
-        greyScale[2] = grey;
-
-        return greyScale;
+        return rgb;
     }
 
     public double getR() {
